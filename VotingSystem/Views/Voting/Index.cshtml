@@ -1,0 +1,75 @@
+﻿@model VotingSystem.Models.VotingModel
+@{
+    ViewData["Title"] = "Voting Form";
+}
+
+<h2>Voting Form</h2>
+
+<form id="votingForm" asp-action="SubmitVote" method="post">
+    <div>
+        <label>Name:</label>
+        <input asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+    </div>
+    <div>
+        <label>Contact:</label>
+        <input asp-for="Contact" />
+        <span asp-validation-for="Contact"></span>
+    </div>
+    <div>
+        <label>Age:</label>
+        <input asp-for="Age" />
+        <span asp-validation-for="Age"></span>
+    </div>
+    <div>
+        <label>CNIC:</label>
+        <input asp-for="CNIC" />
+        <span asp-validation-for="CNIC"></span>
+    </div>
+    <div>
+        <label>Select Assembly:</label><br />
+        <input type="radio" asp-for="AssemblyType" value="Provincial" /> Provincial Assembly
+        <input type="radio" asp-for="AssemblyType" value="National" /> National Assembly
+        <span asp-validation-for="AssemblyType"></span>
+    </div>
+    <div>
+        <label>Select Party:</label><br />
+        <input type="radio" asp-for="SelectedParty" value="PTI" /> PTI<br />
+        <input type="radio" asp-for="SelectedParty" value="PMLN" /> PMLN<br />
+        <input type="radio" asp-for="SelectedParty" value="PPP" /> PPP<br />
+        <span asp-validation-for="SelectedParty"></span>
+    </div>
+    <button type="submit">Submit Vote</button>
+</form>
+
+<!-- Thank You Message -->
+<p id="thankYouMessage" style="display:none; color:green; font-weight:bold;">Thank you! Your vote has been submitted.</p>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        document.getElementById("votingForm").onsubmit = function (event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Display the "Thank You" message
+            document.getElementById("thankYouMessage").style.display = "block";
+
+            // Use AJAX to submit the form data without reloading
+            fetch("@Url.Action("SubmitVote", "Voting")", {
+                method: "POST",
+                body: new FormData(this),
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest"
+                }
+            }).then(response => {
+                if (response.ok) {
+                    console.log("Form submitted successfully.");
+                } else {
+                    console.error("Form submission failed.");
+                }
+            }).catch(error => console.error("Error:", error));
+        };
+    </script>
+}

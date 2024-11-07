@@ -1,0 +1,31 @@
+﻿@model VotingSystem.Models.Step1Model
+
+
+<div class="form-container">
+    <h2>Step 1: Basic Information</h2>
+    <form asp-action="Step1" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <div class="form-group">
+            <label>Name:</label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label>Contact:</label>
+            <input asp-for="Contact" type="tel" class="form-control" />
+            <span asp-validation-for="Contact" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label>Age:</label>
+            <input asp-for="Age" type="number" class="form-control" />
+            <span asp-validation-for="Age" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label>CNIC:</label>
+            <input asp-for="CNIC" class="form-control" />
+            <span asp-validation-for="CNIC" class="text-danger"></span>
+        </div>
+        <button type="submit" class="next-btn">Next</button>
+    </form>
+</div>

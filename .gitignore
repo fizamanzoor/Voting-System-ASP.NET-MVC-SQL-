@@ -1,0 +1,14 @@
+# Ignore Visual Studio and user-specific files
+.vs/
+*.suo
+*.user
+*.rsuser
+*.sln.docstates
+ 
+# Ignore build output
+bin/
+obj/
+ 
+# Ignore other temporary files
+*.log
+*.tmp

@@ -1,0 +1,29 @@
+﻿@model VotingSystem.Models.VotingModel
+
+<form asp-action="SubmitStep4" method="post">
+    <div class="form-group">
+        <label for="Name">Name</label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="Contact">Contact</label>
+        <input asp-for="Contact" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="Age">Age</label>
+        <input asp-for="Age" class="form-control" type="number" />
+    </div>
+    <div class="form-group">
+        <label for="CNIC">CNIC</label>
+        <input asp-for="CNIC" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="AssemblyType">Assembly Type</label>
+        <input asp-for="AssemblyType" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="SelectedParty">Selected Party</label>
+        <input asp-for="SelectedParty" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit Vote</button>
+</form>
